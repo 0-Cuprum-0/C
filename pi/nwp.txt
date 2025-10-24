@@ -1,0 +1,12 @@
+
+ls /etc/host*
+ls -l | grep '^drwxrwxrwx'
+grep 'dom' miasta.txt
+1. grep '^W.*[aw]$' miasta.txt | wc -l 2. grep -v '^W.*[aw]$' miasta.txt | wc -l
+grep '^War\|^Wro\|^Wie' miasta.txt
+plik_1  plik_2  plik_3  plik_4
+ls -d  /home/ee/stud/kow*
+grep '[ -]' miasta.txt
+echo -n "mietek_1" | wc -m
+grep '[ -]' miasta.txt | sort | tail -n 5
+
