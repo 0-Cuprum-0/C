@@ -86,7 +86,7 @@ dot_product(double v[], double u[], int n)
         return dp;
 }
 
-double norm_max(double v[], int n ){
+double norm_max(double v[], int n){
 	double max;
 	max= fabs(v[0]);
 	while (n--){
@@ -99,17 +99,30 @@ double norm_max(double v[], int n ){
 	}
 	return max;
 }
-void summa(double a[],double b[], int n ){
+void summa(double a[],double b[], int n , FILE *output){
 	double sum[10];
 	for(int j =0;j<n; j++){
 		sum[j]=a[j]+b[j];
 	
 	}
-	printf ("[");
+	fprintf (output,"[");
 	for (int i = 0; i<n; i++){
-		printf("%.2lf", sum[i]);
-		printf(" ");
+		fprintf(output,"%.2lf", sum[i]);
+		fprintf(output," ");
 	}
-	printf ("]\n");
+	fprintf (output,"]\n");
 
+}
+double normal(double v[], int n, double norma, FILE *output){
+	double nv[10];
+	for (int i = 0; i<n;i++){
+		nv[i]=v[i]/norma;
+	
+	}
+	fprintf (output,"[");
+        for (int i = 0; i<n; i++){
+                fprintf(output,"%.2lf", nv[i]);
+                fprintf(output," ");
+        }
+        fprintf (output,"]\n");
 }

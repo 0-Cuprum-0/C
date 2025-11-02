@@ -27,6 +27,7 @@ double           L2(double v[], int n);
 double           dot_product(double v[], double u[], int n);
 
 double norm_max(double v[], int n);
-void summa(double a[], double b[],int n);
+void summa(double a[], double b[],int n, FILE *output);
+double normal (double v[], int n, double norma, FILE *output);
 #endif
 
