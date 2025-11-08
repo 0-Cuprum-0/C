@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#define SIZE 100
 
 // DEFINE STATES
  
@@ -11,7 +12,7 @@ typedef enum state {
 State accept = Q2;
 State start = Q0;
 
-int automata(State acc, State st, int input);
+int automata(State acc, State st, int *input, int length);
 
 int main (){
 	//INTRO
@@ -22,7 +23,7 @@ int main (){
 
 	printf("      | 0 | 1 |\n");
 	printf(" q_0  |q_1|q_2|\n");
-	printf(" q_1  |q_3|q_1|\n");
+	printf(" q_1  |q_3|q_0|\n");
 	printf(" q_2  |q_0|q_3|\n");
 	printf(" q_3  |q_1|q_2|\n");
 	printf("It's language is {0 ; 1}\n");
@@ -30,49 +31,109 @@ int main (){
 	
 	//WORK ON INPUT
 	//
-	int sym[100] = {};
+	int sym[SIZE] = {};
 	int c;
-
+	int i =0;
+	
 	while ((c= getchar()) != EOF){
 		if (isspace(c)){
 			continue;
 		}
 		if (c == '1' || c == '0')
-			sym +=c - '0';
+			sym[i] +=c - '0';
 		else{ 
 			printf("Only 0 and 1 !\n");
 			return 1;
 		}
+		i++;
 	}
+	int len = i;
+//	int *input= sym[];
 
-
-	automata( accept, start, sym);
+	automata( accept, start, sym, len);
 
 
 
 	
 }
-int automata(State acc, State st, int input){
+int automata(State acc, State st, int *input,int length){
         State current = st;
-        printf("%d", current);
-	int length = sizeof(input)/ sizeof(input[0]);
-	printf("%d", length);
+        printf("%d\n", current);
+	printf("Length:\n");
+	printf("%d\n", length);
+	switch (st){
+		case 0:
+			printf("q0");
+		break;
+		case 1:
+                        printf("q1");
+		break;
+		case 2:
+                        printf("q2");
+		break;	
+		case 3:
+                        printf("q3");
+		break;	
+	}
 	for(int i = 0; i < length;i++)
 		switch (current) {
 			case 0:
 				if(input[i] == 0){
-					printf("q0->q1");
+					printf("-[0]->q1");
 					current = Q1;
-					printf("%d",current);
+//					printf("%d",current);
 				}else{
-					printf("q0->q2");
+					printf("-[1]->q2");
 					current = Q2;
-					printf("%d",current);
+//					printf("%d",current);
 				}
+				break;
+			case 1:
+				if (input[i] == 0){
+					printf("-[0]->q3");
+                                        current = Q3;
+//                                      printf("%d",current);
+                                }else{
+                                        printf("-[1]->q0");
+                                        current = Q0;
+//                                      printf("%d",current);
+				}
+				break;
+
+			case 2:
+                                if (input[i] == 0){
+                                        printf("-[0]->q0");
+                                        current = Q0;
+//                                      printf("%d",current);
+                                }else{
+                                        printf("-[1]->q3");
+                                        current = Q3;
+//                                      printf("%d",current);
+                                }
+                                break;
+
+			case 3:
+                                if (input[i] == 0){
+                                        printf("-[0]->q1");
+                                        current = Q1;
+//                                      printf("%d",current);
+                                }else{
+                                        printf("-[1]->q2");
+                                        current = Q2;
+//                                      printf("%d",current);
+                                }
+                                break;
+
+
 	
 
+	printf("\n");
 
-
+	}
+	if (current==acc){
+		printf("\nLanguage is accepted\n");
+	}else{
+		printf("\nLanguage is not accepted\n");
 	}
         
 
