@@ -1,0 +1,768 @@
+\documentclass[]{article}
+
+\usepackage[polish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{helvet}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{colortbl}   % Do kolorowania wierszy
+\usepackage{booktabs}   % Dla estetycznych linii
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{titlesec}
+\usepackage{amsmath}
+
+% Zmniejszenie marginesów dla \section
+\titlespacing*{\section}
+{0pt} % Odstęp po lewej (margines)
+{1ex} % Odstęp PRZED tytułem (zmniejszony)
+{1ex} % Odstęp PO tytule (zmniejszony)
+
+% Zmniejszenie marginesów dla \subsection
+\titlespacing*{\subsection}
+{0pt} % Odstęp po lewej
+{0.5ex} % Odstęp PRZED tytułem
+{0.5ex} % Odstęp PO tytule
+
+% Font family
+\renewcommand{\familydefault}{\sfdefault}
+
+%opening
+
+\definecolor{accent}{HTML}{8839ef}
+
+% 1. Define a new command that takes one argument (#1) for the title text
+\newcommand{\mysectionbox}[1]{%
+	\begin{tcolorbox}[
+		enhanced,
+		colback=accent!100!accent,
+		colframe=accent!100!accent,
+		sharp corners,
+		boxrule=1pt,
+		]
+		\color{white}\thesection\hspace{1em}#1
+	\end{tcolorbox}%
+}
+
+% 2. Use the simple new command inside \titleformat
+\titleformat{\section}
+{\normalfont}
+{}
+{0pt}
+{\mysectionbox} % Use the new command here (without arguments)
+[]
+
+\newcommand{\mysubsectionbox}[1]{%
+	\begin{tcolorbox}[
+		enhanced,
+		colback=accent!60, % A lighter (20%) tint for the background
+		colframe=accent!60,    % Keep the original frame color
+		sharp corners,
+		boxrule=1pt,
+		]
+		% Use a dark color for text on a light background
+		\color{black}\thesubsection\hspace{1em}#1
+	\end{tcolorbox}%
+}
+
+\titleformat{\subsection}
+{\normalfont} % Set font style for subsections
+{}
+{0pt}
+{\mysubsectionbox}
+[]
+
+\newcommand{\framedfigure}[4]{%
+	% #1: image file
+	% #2: width
+	% #3: caption text
+	% #4: label for referencing
+	\begin{figure}[H]
+		\centering
+		\begin{tcolorbox}[
+			enhanced,
+			colframe=accent,
+			colback=white,
+			boxrule=1.5pt,
+			sharp corners,
+			boxsep=0pt,
+			left=0pt,
+			right=0pt,
+			top=0pt,
+			bottom=0pt,
+			hbox,	
+			drop shadow
+			]
+			\includegraphics[width=#2]{#1}
+		\end{tcolorbox}
+		\caption{#3}
+		\label{#4}
+	\end{figure}
+}
+
+\newcommand{\framedsubfigure}[4]{%
+	% #1: image file
+	% #2: width
+	% #3: caption text
+	% #4: label for referencing
+	\begin{subfigure}{#2}
+		\centering
+		\begin{tcolorbox}[
+			enhanced,
+			colframe=accent,
+			colback=white,
+			boxrule=1.5pt,
+			sharp corners,
+			boxsep=0pt,
+			left=0pt,
+			right=0pt,
+			top=0pt,
+			bottom=0pt,
+			hbox,	
+			drop shadow
+			]
+			\includegraphics[width=\linewidth]{#1}
+		\end{tcolorbox}
+		\caption{#3}
+		\label{#4}
+	\end{subfigure}
+}
+
+% 2. Save the original \textbf command
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{%
+	\textcolor{accent}{\oldtextbf{#1}}%
+}
+
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+\definecolor{commentgreen}{rgb}{0,0.4,0}
+\definecolor{keywordblue}{rgb}{0,0,0.6}
+
+\lstset{
+	backgroundcolor=\color{codegray}, % Background color
+	rulecolor=\color{accent},
+	commentstyle=\color{commentgreen}, % Comment color
+	keywordstyle=\color{accent},   % Keyword color
+	numberstyle=\tiny\color{gray},    % Line number style
+	stringstyle=\color{purple},       % String color
+	basicstyle=\ttfamily\footnotesize,  % Font style for code
+	breakatwhitespace=false,          % Don't break lines only at whitespace
+	breaklines=true,                  % Break long lines automatically
+	captionpos=b,                     % Caption position (b=bottom, t=top)
+	frame=single,                     % Adds a frame around the code
+	keepspaces=true,                  % Keep spaces in the code
+	numbers=left,                     % Line numbers on the left
+	numbersep=5pt,                    % Distance of numbers from the code
+	showspaces=false,                 % Don't show spaces as special characters
+	showstringspaces=false,           % Don't show spaces in strings
+	showtabs=false,                   % Don't show tabs as special characters
+	tabsize=2                         % Tab size
+}
+
+\newenvironment{conditions}
+{\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+	{\end{tabular}\par\vspace{\belowdisplayskip}}
+	
+% Zwiększamy odstępy pionowe (padding góra/dół)
+\renewcommand{\arraystretch}{1.25} 
+% Zwiększamy odstępy poziome (padding lewo/prawo)
+\setlength{\tabcolsep}{10pt}
+
+\begin{document}
+	
+	\tableofcontents
+	
+	\clearpage
+	
+	\section{Cel}
+	Ćwiczenie podzielono na dwie zasadnicze części.
+	
+	\subsection{Część I: Wyznaczanie objętości walca}
+	
+	Celem pierwszej części jest wyznaczenie objętości walca. Zadanie polega na precyzyjnym zmierzeniu wymiarów geometrycznych obiektu (wysokości i średnicy) przy użyciu suwmiarki oraz śruby mikrometrycznej. Następnie, na podstawie uzyskanych pomiarów, należy obliczyć objętość walca wraz z oszacowaniem niepewności pomiarowej.
+	
+	\subsection{Część II: Weryfikacja prawa Ohma}
+	
+	Druga część ćwiczenia poświęcona jest eksperymentalnej weryfikacji prawa Ohma. W tym celu należy dokonać pomiarów natężenia prądu elektrycznego płynącego przez opornik oraz napięcia na jego zaciskach. Końcowym etapem jest analiza zebranych danych, obejmująca obliczenie niepewności pomiarowych oraz graficzne przedstawienie i zbadanie zależności między natężeniem a napięciem.
+	
+	\section{Wstęp teoretyczny}
+	
+	\subsection{Pomiar pośredni i bezpośredni}
+	\label{pomiar}
+	
+	\textbf{Pomiar bezpośredni} ma miejsce wtedy, gdy wartość mierzonej wielkości fizycznej jest uzyskiwana bezpośrednio z odczytu na przyrządzie pomiarowym. Wynik jest natychmiast widoczny na skali lub wyświetlaczu urządzenia, bez konieczności wykonywania dodatkowych obliczeń. Przykładami takiego pomiaru są:
+	
+	\begin{itemize}
+		\item Pomiar długości linijką lub suwmiarką.
+		
+		\item Pomiar masy przy użyciu wagi.
+		
+		\item Pomiar temperatury termometrem.
+		
+		\item Pomiar napięcia woltomierzem.
+		
+		\item Pomiar czasu stoperem.
+	\end{itemize}
+	
+	\textbf{Pomiar pośredni} jest stosowany, gdy nie można zmierzyć szukanej wielkości wprost. Polega on na wyznaczeniu wartości tej wielkości na podstawie znanego związku matematycznego (wzoru fizycznego), który łączy ją z innymi wielkościami, które są mierzone bezpośrednio. Przykładami pomiaru pośredniego są:
+	\begin{itemize}
+		\item Wyznaczanie gęstości ($\rho$): Mierzy się bezpośrednio masę (m) i objętość (V), a następnie oblicza gęstość ze wzoru $\rho=\frac{m}{V}$.
+		
+		\item Wyznaczanie prędkości średniej (v): Mierzy się bezpośrednio przebytą drogę (s) i czas (t), a następnie oblicza prędkość ze wzoru $v=\frac{s}{t}$.
+		
+		\item Wyznaczanie oporu (R) z prawa Ohma: Mierzy się bezpośrednio napięcie (U) i natężenie (I), a następnie oblicza opór ze wzoru $R=\frac{U}{I}$.
+		
+		\item Wyznaczanie objętości walca (V): Mierzy się bezpośrednio wysokość (H) i średnicę (d), a następnie oblicza objętość ze wzoru $V = \frac{\pi d^2 H}{4}$.
+	\end{itemize}
+	
+	\subsection{Niepewności pomiarowe typu A i B}
+	
+	\textbf{Niepewność pomiarowa} to parametr charakteryzujący rozrzut wartości, które można w uzasadniony sposób przypisać wielkości mierzonej. Niepewność pomiarową można obliczyć używając \textbf{metody typu A i B}.
+	
+	\subsubsection{Metoda typu A}
+	
+	\textbf{Metoda typu A} wynika bezpośrednio z analizy statystycznej serii powtarzalnych pomiarów, które traktuje się jako próbę statystyczną podlegającą rozkładowi prawdopodobieństwa. W celu obliczenia tej niepewności należy najpierw policzyć wartość średnią z pomiarów jako:
+	
+	\begin{equation}
+		\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+		\label{eq:srednia}
+	\end{equation}
+	
+	\noindent Korzystając z poniższego wzoru można obliczyć niepewność metodą typu A:
+	
+	\begin{equation}
+		u(x) = \sqrt{\frac{1}{n(n-1)}\sum_{i=1}^{n}(x_i-\bar{x})^2}
+		\label{eq:metoda_a}
+	\end{equation}
+	Gdzie:
+	\begin{conditions}
+		n & liczba pomiarów \\
+		\bar{x} & średnia arytmetyczna pomiarów \\
+	\end{conditions}
+	
+	\subsubsection{Metoda typu B}
+	
+	\textbf{Metoda typu B} wyznaczania niepewności opiera się na wszelkich dostępnych informacjach innych niż analiza statystyczna bieżącej serii pomiarów.Źródłem informacji może być osąd naukowy, ale także:
+	
+	\begin{itemize} 
+		\item dane od producenta przyrządu (np. jego klasa dokładności), 
+		\item informacje ze świadectwa wzorcowania, 
+		\item dane z poprzednich pomiarów lub literatury. 
+	\end{itemize}
+	
+	W celu obliczenia niepewności metodą typu B, należy policzyć niepewność wzorcowania $\Delta x$ oraz niepewność eksperymentatora $\Delta x_e$.
+	
+	\medspace
+	
+	\textbf{Niepewność wzorcowania $\Delta x$}
+	Jest to niepewność związana z użytym narzędziem. Przeważnie jako maksymalną wartość przyjmujemy najmniejszą podziałkę przyrządu pomiarowego \cite{wyk_wstep}.
+	
+	\medspace
+	
+	\textbf{Niepewność eksperymentatora $\Delta x_e$}
+	Jest to niepewność wprowadzana przez osobę wykonującą pomiar. Zazwyczaj przyjmuje się jako wartość minimalną $\Delta x_e = \frac{1}{2}\Delta x$ (wyjątkiem są pomiary, gdzie niepewność wzorcowania jest dużo mniejsza niż dokładność działania eksperymentatora).
+	
+	\medspace
+	
+	\noindent Niepewność pomiaru typu B można obliczyć korzystając z poniższych wzorów:
+	
+	\begin{equation}
+	u_B(x) = \sqrt{\frac{\Delta x^2}{3}} \quad \text{lub} \quad u_B(x)=\sqrt{\frac{\Delta x^2}{3} + \frac{\Delta x_e^2}{3}}
+	\label{metoda_b}
+	\end{equation}
+	
+	\subsection{Niepewność całkowita}
+	
+	\textbf{Niepewność całkowita} to pojedyncza wartość, która reprezentuje łączny efekt wszystkich zidentyfikowanych źródeł niepewności wpływających na końcowy wynik pomiaru. Pozwala na połączenie ze sobą niepewności $u_A(x)$ $u_B(x)$
+	
+	Aby policzyć niepewność całkowitą należy skorzystać ze wzoru:
+	
+	\begin{equation}
+		u(x) = \sqrt{u_A^2(x) + u_B^2(x)}
+		\label{eq:niepewnosc_calkowita}
+	\end{equation}
+	
+	\subsection{Propagacja niepewności}
+	\textbf{Propagacja niepewności} to metoda matematyczna służąca do obliczenia, jaka jest niepewność ostatecznego wyniku, jeśli ten wynik jest obliczany ze wzoru na podstawie innych wielkości, które zostały zmierzone z własnymi niepewnościami.
+	
+	\subsubsection{Przykład}
+	Wielkość y jest kombinacją wielkości a, b, c, które są mierzone bezpośrednio z całkowitymi (typu A i/lub typu B) niepewnościami odpowiednio $u_a$, $u_b$, $u_c$. Dla takiego przypadku niepewność złożona może być liczona z prawa propagacji niepewności.
+	
+	\begin{equation}
+		y = f(a,b,c)
+	\end{equation}
+	
+	\begin{equation}
+		u(y) = \sqrt{\left(\frac{\partial f}{\partial a}\right)^2u_a^2 + \left(\frac{\partial f}{\partial b}\right)^2u_b^2 + \left(\frac{\partial f}{\partial c}\right)^2u_c^2}
+		\label{eq:prawo_propagacji}
+	\end{equation}
+	
+	\subsection{Niepewność rozszerzona}
+	\textbf{Niepewność rozszerzona} $U(x)$ – wielkość określająca przedział wokół wyniku pomiaru, od którego oczekuje się, że obejmie przeważającą część
+	wyników. \cite{wyk_wstep}
+	
+	\medspace
+	
+	\noindent \textbf{Współczynnik rozszerzenia k} to współczynnik liczbowy, stosowany do obliczenia niepewności rozszerzonej. W praktyce laboratoryjnej, zaleca się przyjęcie wartości $k = 2$.
+	
+	\medspace
+	
+	\noindent \textbf{Niepewność rozszerzoną} wyraża się jako:
+	
+	\begin{equation}
+		U(x) = k * u(x)
+	\end{equation}
+	
+	\subsection{Metoda najmniejszych kwadratów}
+	
+	\textbf{Metoda najmniejszych kwadratów (MNK)} to standardowa procedura analityczna służąca do znajdowania "najlepszego dopasowania" modelu matematycznego (np. linii prostej $y=ax+b$) do zbioru punktów danych.
+	
+	\medspace
+	
+	Polega ona na znalezieniu takich wartości parametrów $a$ i $b$, dla których suma kwadratów odchyleń (różnic między wartościami zmierzonymi $y_i$ a wartościami przewidzianymi przez model $ax_i+b$) jest najmniejsza.
+	
+	Matematycznie, sprowadza się to do minimalizacji następującej funkcji:
+	
+	\begin{equation}
+		\sum_{i=1}^{n}[y_i - (ax_i + b)]^2 = \text{min}
+	\end{equation}
+	
+	Gdzie:
+	
+	\begin{conditions}
+		n & liczba pomiarów\\
+		a & współczynnik kierunkowy prostej\\
+		b & wyraz wolny prostej\\
+	\end{conditions}
+	
+	\subsection{Prawo Ohma}
+	\textbf{Prawo Ohma} stwierdza, że dla przewodnika utrzymywanego w stałej temperaturze, natężenie prądu elektrycznego ($I$), czyli uporządkowanego ruchu elektronów, jest wprost proporcjonalne do napięcia ($U$) przyłożonego do przewodnika.
+	
+	\medspace
+	
+	W rezultacie, stosunek $\frac{U}{I}$ jest dla danego przewodnika stały. Tę stałą wielkość, będącą miarą oporu stawianego przez przewodnik, nazywa się \textbf{oporem elektrycznym} ($R$).
+	
+	\begin{equation}
+		R = \frac{U}{I}
+	\end{equation}
+	
+	Jednostką oporu elektrycznego w układzie SI jest \textbf{om} oznaczany symbolem $\Omega$.
+	
+	\medspace
+	
+	Aby eksperymentalnie zweryfikować tę zależność, konieczne jest prawidłowe wpięcie przyrządów pomiarowych w obwód:
+	
+	\begin{itemize}
+		\item Woltomierz (służący do pomiaru napięcia $U$) należy zawsze podłączać \textbf{równolegle} do elementu, na którym mierzymy napięcie (np. równolegle do opornika).
+		
+		\item Amperomierz (służący do pomiaru natężenia $I$) należy zawsze podłączać \textbf{szeregowo} w obwodzie, tak aby mierzony prąd musiał przez niego przepłynąć.
+	\end{itemize}
+	
+	\subsection{Wyznaczanie objętości walca}
+	
+	\textbf{Wyznaczenie objętości walca} ($V$) jest pomiarem pośrednim (opisany w sekcji \ref{pomiar}). Wymaga on przeprowadzenia dwóch pomiarów bezpośrednich:
+	
+	\begin{itemize}
+		\item $H$ = wysokość walca (mierzona za pomocą suwmiarki)
+		\item $d$ = średnica podstawy (mierzona za pomocą śruby mikrometrycznej)
+	\end{itemize}
+	
+	\noindent Następnie, wartość objętości obliczana jest na podstawie zależności matematycznej:
+	
+	\begin{equation} V = \frac{\pi d^2 H}{4} \end{equation}
+	
+	\noindent Ostateczna niepewność pomiaru pośredniego $u(V)$ musi zostać wyznaczona metodą propagacji niepewności, uwzględniając niepewności pomiarów bezpośrednich $u(H)$ i $u(d)$.
+	
+	\clearpage
+
+	\section{Układy i przyrządy pomiarowe}
+	
+	\subsection{Część I: Wyznaczanie objętości walca}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=6cm]{images/schemat_walca.png}
+		\caption{Schemat walca}
+		\label{fig:walec}
+	\end{figure}
+	
+	W skład układu pomiarowego wchodziły:
+	\begin{itemize}
+		\item Aluminiowy walec
+		\item Suwmiarka noniuszowa analogowa - służąca do pomiaru wysokości walca (H)
+		\item Śruba mikrometryczna - użyta do pomiaru średnicy walca (d)
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=6cm]{images/suwmiarka.jpg}
+			\caption{Suwmiarka noniuszowa analogowa \cite{suwmiarka}}
+			\label{fig:suwmiarka}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=6cm]{images/sruba_mikrometryczna.jpg}
+			\caption{Śruba mikrometryczna \cite{sruba}}
+			\label{fig:sruba}
+		\end{subfigure}
+		\caption{Przyrządy użyte do mierzenia walca}
+	\end{figure}
+	
+	W ramach eksperymentu dokonano 15 pomiarów wysokości walca suwmiarką noniuszową analogową o dokładności 0,1 mm oraz 15 pomiarów średnicy walca śrubą mikrometryczną o dokładności 0,02 mm.
+	\clearpage
+	
+	\subsection{Część II: Weryfikacja prawa Ohma}
+	Układ pomiarowy drugiej części laboratorium składał się z:
+	\begin{itemize}
+		\item Płytki stykowej (Rysunek \ref{fig:plytka}) - z wpiętym opornikiem R4
+		\item Miernika uniwersalnego UM-112B (Rysunek \ref{fig:woltomierz}) - użytego jako woltomierz
+		\item Cyfrowego miernika uniwersalnego M-3800 (Rysunek \ref{fig:amperomierz}) - użytego jako amperomierz
+		\item Zasilacza laboratoryjnego DF1730SL5A (Rysunek \ref{fig:zasilacz})
+		\item Przewodów
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=7cm]{images/schemat_ukladu_pomiarowego.png}
+			\caption{Schemat podłączenia urządzeń}
+			\label{fig:schemat_ukladu}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=7cm]{images/plytka.jpg}
+			\caption{Płytka stykowa}
+			\label{fig:plytka}
+		\end{subfigure}
+		\caption{Układ pomiarowy}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=6cm]{images/woltomierz.jpg}
+			\caption{Miernik uniwersalny UM-112B}
+			\label{fig:woltomierz}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=4cm]{images/amperomierz.jpg}
+			\caption{Cyfrowy miernik uniwersalny M-3800}
+			\label{fig:amperomierz}
+		\end{subfigure}
+		
+		\caption{Mierniki}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=5.9cm]{images/zasilacz.jpg}
+		\caption{Zasilacz laboratoryjny DF1730SL5A}
+		\label{fig:zasilacz}
+	\end{figure}
+
+	W celu zmierzenia napięcia na oporniku R4 oraz natężenia płynącego przez niego prądu, woltomierz wpięto równolegle, a amperomierz szeregowo.
+	
+	W trakcie eksperymentu wykonano 10 pomiarów. Polegały one na zmniejszaniu napięcia na zasilaczu laboratoryjnym od wartości 15,5 V do 2 V, w krokach co 1,5 V, i rejestrowaniu wskazań obu mierników. Aby zapewnić jak największą dokładność odczytów, na bieżąco dostosowywano zakresy pomiarowe urządzeń (30V, 10V, 3V dla woltomierza i 200mA, 20mA dla amperomierza).
+	
+	\section{Wyniki pomiarów}
+	\subsection{Część I: Wyznaczanie objętości walca}
+	
+	Wyniki pomiarów średnicy i wysokości walca zostały zawarte w tabeli poniżej.
+	
+	\begin{table}[H]
+		\centering
+		
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Numer pomiaru & d [mm] & H [mm] \\
+			\hline
+			1 & 11,74 & 47,1 \\
+			2 & 11,76 & 47,1 \\
+			3 & 11,76 & 47,1 \\
+			4 & 11,74 & 47,1 \\
+			5 & 11,75 & 47,4 \\
+			6 & 11,76 & 47,1 \\
+			7 & 11,77 & 47,1 \\
+			8 & 11,77 & 46,8 \\
+			9 & 11,77 & 47,1 \\
+			10 & 11,77 & 47,1 \\
+			11 & 11,76 & 47,1 \\
+			12 & 11,77 & 47,1 \\
+			13 & 11,77 & 47,1 \\
+			14 & 11,76 & 47,0 \\
+			15 & 11,76 & 47,1 \\
+			\hline
+		\end{tabular}
+		\caption{Pomiary średnicy i wysokości walca}
+		\label{pomiary_walec}
+	\end{table}
+	
+	
+	
+	\subsection{Część II: Weryfikacja prawa Ohma}
+	
+	Wyniki pomiarów napięcia i natężenia wraz z niepewnościami umieszczono w tabeli poniżej.
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+			\hline
+			l.p. & U [V] & $Z_U$[V] & u(U) [V] & I [mA] & $Z_I$[mA] & $dgt_I$ [mA] & u(I) [mA] \\
+			\hline
+			1 & 11 & 30 & 0,17 & 29 & 200 & 0,1 & 0,259 \\
+			\hline
+			2 & 10 & 30 & 0,17 & 25,9 & 200 & 0,1 & 0,237 \\
+			\hline
+			3 & 9 & 30 & 0,17 & 23,3 & 200 & 0,1 & 0,219 \\
+			\hline
+			4 & 8 & 30 & 0,17 & 20,4 & 200 & 0,1 & 0,199 \\
+			\hline
+			5 & 6,8 & 10 & 0,058 & 17,49 & 20 & 0,01 & 0,056 \\
+			\hline
+			6 & 5,4 & 10 & 0,058 & 14,09 & 20 & 0,01 & 0,046 \\
+			\hline
+			7 & 4,6 & 10 & 0,058 & 12,09 & 20 & 0,01 & 0,041 \\
+			\hline
+			8 & 3,8 & 10 & 0,058 & 9,22 & 20 & 0,01 & 0,032 \\
+			\hline
+			9 & 2,6 & 3 & 0,017 & 6,51 & 20 & 0,01 & 0,025 \\
+			\hline
+			10 & 1,5 & 3 & 0,017 & 3,73 & 20 & 0,01 & 0,017 \\
+			\hline
+		\end{tabular}
+		\caption{Wyniki pomiarów napięcia i natężenia}
+		\label{wyniki_pomiarow_u_i}
+	\end{table}
+	
+	Gdzie:
+	\begin{conditions}
+		Z_U & zakres woltomierza\\
+		Z_I & zakres amperomierza\\
+		dgt_I & wartość błędu wynikająca z rozdzielczości wyświetlacza na danym zakresie pomiarowym\\
+	\end{conditions}
+	
+	\section{Opracowanie części I}
+	\subsection{Niepewności typu A}
+	
+	W celu obliczenia niepewności pomiarowych metodą A należy skorzystać z danych zapisanych w \textbf{tabeli \ref{pomiary_walec}}. Aby to zrobić należy najpierw policzyć średnią arytmetyczną uzyskanych pomiarów \eqref{eq:srednia}.
+	
+	\begin{equation}
+		\bar{d} = \frac{1}{15}*\sum_{i=1}^{15}d_i \approx 11,7607 mm
+		\label{srednia_srednicy}
+	\end{equation}
+	
+	\begin{equation}
+		\bar{H} = \frac{1}{15}*\sum_{i=1}^{15}H_i \approx 47,0933 mm
+		\label{srednia_wysokosci}
+	\end{equation}
+	
+	\noindent Następnie można przystąpić do obliczenia niepewności pomiarowej metodą A korzystając ze wzoru \eqref{eq:metoda_a}.
+	
+	\begin{equation}
+		u_A(d) = \sqrt{\frac{1}{15*14}\sum_{i=1}^{15}(d_i - \bar{d})^2} \approx 0,0026666666667 \approx 0,0027 mm
+		\label{metoda_a_srednica}
+	\end{equation}
+	
+	\begin{equation}
+		u_A(H) = \sqrt{\frac{1}{15*14}\sum_{i=1}^{15}(H_i - \bar{H})^2} \approx 0,0300264433723 \approx 0,030 mm
+		\label{metoda_a_wysokosc}
+	\end{equation}
+	
+	\subsection{Niepewność typu B}
+	Odczytując informacje zapisane na urządzeniach pomiarowych można ustalić niepewności wzorcowe i eksperymentalne.
+	
+	\begin{equation}
+		\Delta d = 0,02 mm \implies \Delta d_e = 0,01 mm
+	\end{equation}
+	
+	\begin{equation}
+		\Delta H = 0,1 mm \implies \Delta H_e = 0,05 mm
+	\end{equation}
+	
+	\noindent Korzystając z tych informacji i wzoru \eqref{metoda_b} można obliczyć niepewność typu B.
+	
+	\begin{equation}
+		u_B(d) = \sqrt{\frac{\Delta d^2 + \Delta d_e^2}{3}} = \sqrt{\frac{0,02^2 + 0,01^2}{3}} \approx 0,01290994449 mm \approx 0,0129 mm
+	\end{equation}
+	
+	\begin{equation}
+		u_B(H) = \sqrt{\frac{\Delta H^2 + \Delta H_e^2}{3}} = \sqrt{\frac{0,1^2 + 0,05^2}{3}} \approx 0,06454972244 mm \approx 0,0645 mm
+	\end{equation}
+	
+	\subsection{Niepewności całkowite}
+	Mając niepewności typu A i B można przystąpić do liczenia niepewności całkowitych ze wzoru \eqref{eq:niepewnosc_calkowita}.
+	
+	\begin{equation}
+		u(d) = \sqrt{u_A^2(d) + u_B^2(d)} \approx 0,0131824799581 mm \approx 0,013 mm
+	\end{equation}
+	
+	\begin{equation}
+		u(H) = \sqrt{u_A^2(H) + u_B^2(H)} \approx 0,0711916706411 mm \approx 0,071 mm
+	\end{equation}
+	
+	\subsection{Niepewność objętości z prawa propagacji}
+	Aby policzyć niepewność dla objętości należy skorzystać z prawa propagacji niepewności \eqref{eq:prawo_propagacji}.
+	
+	\begin{equation}
+		V(d,H) = \frac{\pi d^2 H}{4} \approx 5115,79572542407 mm \approx 5116 mm
+	\end{equation}
+	
+	\begin{equation}
+		u(V) = \sqrt{\left(\frac{\partial V}{\partial d}*u(d)\right)^2 + \left(\frac{\partial V}{\partial H}*u(H)\right)^2} = \sqrt{\left(\frac{\pi d H}{2} * u(d)\right)^2 + \left(\frac{\pi d^2}{4} * u(H)\right)^2} \approx 13,83 mm^3 \approx 14 mm^3
+	\end{equation}
+	
+	\subsection{Zapisanie wyników}
+	\begin{equation}
+		d = 11,760(13) \text{ mm}
+	\end{equation}
+	\begin{equation}
+		H = 47,093(71) \text{ mm}
+	\end{equation}
+	\begin{equation}
+		V = 5116(14) \text{ mm}^3
+	\end{equation}
+	
+	\section{Opracowanie części II}
+	
+	\subsection{Niepewność pomiaru napięcia}
+	W celu obliczenia niepewności wzorcowania należy skorzystać ze wzoru:
+	\begin{equation}
+		\Delta x = \frac{\text{klasa}*\text{zakres}}{100}
+	\end{equation}
+	
+	\noindent Klasa woltomierza wynosi $k = 1$, a zatem dla zakresu 30V niepewność typu B będzie równa:
+	\begin{equation}
+		u_{30V}(U) = \frac{0,3}{\sqrt{3}} \approx 0,1732050808 V \approx 0,17 V
+	\end{equation}
+	Dla zakresu 10 V:
+	\begin{equation}
+		u_{10V}(U) = \frac{0,1}{\sqrt{3}} \approx 0,05773502692 V \approx 0,058 V
+	\end{equation}
+	Dla zakresu 3V:
+	\begin{equation}
+		u_{3V}(U) = \frac{0,03}{\sqrt{3}} \approx 0,01732050808 V \approx 0,017 V
+	\end{equation}
+	
+	\subsection{Niepewności pomiaru natężenia}
+	
+	Zgodnie z instrukcją do miernika uniwersalnego M-3800, niepewność wzorcowania dla zakresu 200 mA wyraża się wzorem:
+	\begin{equation}
+		\Delta I = 1,2\%\text{rdg} + 1\text{dgt}
+	\end{equation}
+	
+	\noindent Natomiast dla zakresu 20 mA:
+	\begin{equation}
+		\Delta I = 0,5\%\text{rdg} + 1\text{dgt}
+	\end{equation}
+	
+	\subsection{Regresja liniowa}
+	
+	Na podstawie wyników pomiarów zapisanych w \textbf{tabeli \ref{wyniki_pomiarow_u_i}} sporządzono wykres zależności napięcia od natężenia, zaznaczono linię trendu oraz umieszczono słupki błędów, w zależności od wyznaczonych niepewności.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=16cm]{images/zaleznosc_u_od_i.png}
+		\caption{Wykres zależności napięcia od natężenia}
+		\label{fig:zaleznosc_u_od_i}
+	\end{figure}
+	
+	\noindent Korzystając z funkcji REGLINP (ang. LINEST) w arkuszu kalkulacyjnym, można wyznaczyć poszukiwany opór i jego niepewność $R$.
+	
+	\begin{equation}
+		R \approx 0,385897181393519\, k\Omega \approx 385,9\,\Omega
+	\end{equation}
+	
+	\begin{equation}
+		u(R) \approx 0.00211297293616013 \,\frac{V}{mA} \approx 2,1 \,\Omega
+	\end{equation}
+	
+	\noindent Następnie można podać wynik:
+	
+	\begin{equation}
+		R = 385,9(21)\,\Omega
+	\end{equation}
+	
+	\subsection{Propagacja niepewności oporu obliczona z jednego pomiaru}
+	
+	Niepewność oporu $R_1$ można policzyć korzystając ze wzoru \ref{eq:prawo_propagacji}, używając napięcia $U_1$ ,natężenia $I_1$ i ich niepewności, które zdefiniowano poniżej.
+	
+	\begin{align*}
+		U_1 &= 11 \text{ V} \\
+		u(U_1) &= 0,17 \text{ V} \\
+		I_1 &= 29 \text{ mA} \\
+		u(I_1) &= 0,259 \text{ mA}
+	\end{align*}
+	
+	\noindent Po zdefiniowaniu tych wartości można przejść do liczenia niepewności oporu:
+	
+	\begin{equation}
+		u(R_1) = \sqrt{\left(\frac{\partial R_1}{\partial U_1}*u(U_1)\right)^2+\left(\frac{\partial R_1}{\partial I_1}*u(I_1)\right)^2} = \sqrt{\left(\frac{1}{I_1}*u(U_1)\right)^2+\left(-\frac{U_1}{I_1^2}*u(I_1)\right)^2}
+	\end{equation}
+	
+	\begin{equation}
+		u(R_1) \approx 0,006770518083\,\frac{V}{mA} \approx 6,8\,\Omega
+	\end{equation}
+	
+	\noindent Następnie należy policzyć opór $R_1$ korzystając z $U_1$ i $I_1$
+	
+	\begin{equation}
+		R_1 \approx \frac{U_1}{I_1} \approx 0,379310345\,\frac{V}{mA} \approx 379,3\,\Omega
+	\end{equation}
+	
+	\noindent A zatem opór $R_1$ jest równy:
+	\begin{equation}
+		R_1 = 379,3(68)\,\Omega
+	\end{equation}
+	
+	\section{Wnioski}
+	\subsection{Część I: Wyznaczanie objętości walca}
+	W ramach ćwiczenia wyznaczono objętość walca. Uzyskana wartość, wraz z obliczoną niepewnością rozszerzoną, wynosi:
+	\begin{equation}
+		V = 5116(14) \text{ mm}^3
+	\end{equation}
+	Analiza propagacji niepewności wykazała, że \textbf{dominującym źródłem niepewności całkowitej} był pomiar wysokości ($H$). Wynikało to bezpośrednio z niskiej rozdzielczości (błędu wzorcowania) użytej suwmiarki (0,1 mm), co przełożyło się na dużą niepewność pomiarową typu B.
+	
+	W celu znaczącej redukcji niepewności końcowej (potencjalnie do wartości jednocyfrowej), należałoby zastosować do pomiaru wysokości przyrząd o wyższej precyzji. Zwiększenie liczby pomiarów pozwoliłoby dodatkowo zredukować niepewność pomiarową typu A.
+	
+	\subsection{Część II: Weryfikacja prawa Ohma}
+	Cel drugiej części, jakim była eksperymentalna weryfikacja prawa Ohma, został zrealizowany. Na podstawie zebranych danych pomiarowych ($I$, $U$) sporządzono wykres charakterystyki prądowo-napięciowej.
+	
+	Zastosowanie metody najmniejszych kwadratów (regresji liniowej) \textbf{potwierdziło zależność liniową} między napięciem a natężeniem prądu.
+	
+	Na podstawie regresji liniowej wyznaczono wartość oporu na:
+	\begin{equation}
+		R = 385,9(21)\,\Omega
+	\end{equation}
+	Dodatkowo, obliczono opór metodą propagacji niepewności dla pojedynczego pomiaru (Sekcja 6.1.4), uzyskując.
+
+	\begin{equation}
+		R_1 = 379,3(68)\,\Omega
+	\end{equation}
+	
+	 Wynik ten jest zgodny z wartością z regresji, jednak jego niepewność jest ponad trzykrotnie większa. Dowodzi to statystycznej wyższości metody najmniejszych kwadratów, która skutecznie uśrednia błędy losowe ze wszystkich punktów pomiarowych.\\
+	
+	Obserwowane, niewielkie odchylenia punktów pomiarowych od wyznaczonej prostej regresji, można przypisać dwóm głównym czynnikom. Pierwszym są błędy wzorcowania użytej aparatury (woltomierza i amperomierza). Drugim, potencjalnie istotnym czynnikiem, mogły być \textbf{zmiany rezystancji opornika} spowodowane jego nagrzewaniem się. W celu dalszego uściślenia wyników należałoby zastosować mierniki o wyższej dokładności oraz zadbać o stabilizację termiczną badanego elementu.
+	\section{Bibliografia}
+	% Nie dotykać tego, bo nagłówek się nie numeruje normalnie
+	\printbibliography[heading=none]
+	
+\end{document}

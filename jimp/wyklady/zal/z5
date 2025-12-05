@@ -1,0 +1,13 @@
+runner: main.o sorter.o tester.o util.o
+	$(CC) -o runner $^ -lm
+	./runner test_data -o result
+	diff result good_sample
+
+
+Cel (zapewne plik) runner zależy od plikow main.o, sorter.o, tester.o i util.o.
+Jeżeli któryś z nich jest nowszy od pliku runner, lub jeśli plki runner nie istnieje,
+to należy wykonać polecenia wyliczone w liniach 2-4. Polecenie w linii 2 najpewniej oznacza
+uruchomienie kompilatora języka C, który utworzy program wykonywalny runner na podstawie plików
+wyliczonych w pierwszej linii po dwukropku, z dołączeniem biblioteki matematycznej.
+Polecenie w linii trzeciej to uruchomienie pliku-celu, polecenie w linii czwartej, to zapewne
+porówwnanie wyników plikiem-referencją.

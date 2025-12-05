@@ -1,0 +1,9 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[1] Config.pm:331> INFO - Logfile is 'SP2INF_Aleksander_Jóźwik_3_337338.blg'
+[117] biber:342> INFO - === wto lis 11, 2025, 15:53:00
+[152] Biber.pm:421> INFO - Reading 'SP2INF_Aleksander_Jóźwik_3_337338.bcf'
+[270] Biber.pm:1002> INFO - Found 0 citekeys in bib section 0
+[304] bbl.pm:676> INFO - Writing 'SP2INF_Aleksander_Jóźwik_3_337338.bbl' with encoding 'UTF-8'
+[304] bbl.pm:779> INFO - Output to SP2INF_Aleksander_Jóźwik_3_337338.bbl
+[304] Biber.pm:132> WARN - The file 'SP2INF_Aleksander_Jóźwik_3_337338.bcf' does not contain any citations!
+[304] Biber.pm:134> INFO - WARNINGS: 1

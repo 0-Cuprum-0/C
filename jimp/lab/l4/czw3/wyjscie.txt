@@ -1,0 +1,15 @@
+__________1_wector__________
+Wczytano 5-elementowy wektor:
+( 1.000000 2.000000 3.000000 4.000000 5.000000 )
+Norma L2 wczytanego wektora = 7.416198
+norma max: 5.000000
+Nomalizacja:[0.13 0.27 0.40 0.54 0.67 ]
+__________2_wector__________
+Wczytano 5-elementowy wektor:
+( 4.000000 1.000000 7.000000 4.000000 3.000000 )
+norma max: 7.000000
+Norma L2 wczytanego wektora = 9.539392
+Nomalizacja:[0.42 0.10 0.73 0.42 0.31 ]
+====================
+Iloczyn skalarny wczytanych wektorow = 58.000000
+Summa: [5.00 3.00 10.00 8.00 8.00 ]

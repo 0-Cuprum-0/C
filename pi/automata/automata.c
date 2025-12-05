@@ -26,8 +26,9 @@ int main (){
 	printf(" q_1  |q_3|q_0|\n");
 	printf(" q_2  |q_0|q_3|\n");
 	printf(" q_3  |q_1|q_2|\n");
-	printf("It's language is {0 ; 1}\n");
-	printf("Please, enter your input symbols without spaces in one line: \n");
+	printf("M=(Q, S, d, q0, F) Q={ q0, q1, q2, q3 }, S={0, 1}, F={ q2 }\n");
+	printf("Please, enter your input symbols without spaces in one line, \n");
+	printf("press Enter to finish input:\n");
 	
 	//WORK ON INPUT
 	//
@@ -36,8 +37,11 @@ int main (){
 	int i =0;
 	
 	while ((c= getchar()) != EOF){
-		if (isspace(c)){
+		if (c == ' '){
 			continue;
+		}
+		if (c == '\n' || c == '\t'){
+			break;
 		}
 		if (c == '1' || c == '0')
 			sym[i] +=c - '0';
@@ -58,9 +62,9 @@ int main (){
 }
 int automata(State acc, State st, int *input,int length){
         State current = st;
-        printf("%d\n", current);
-	printf("Length:\n");
-	printf("%d\n", length);
+//      printf("%d\n", current);
+//	printf("Length:\n");
+//	printf("%d\n", length);
 	switch (st){
 		case 0:
 			printf("q0");

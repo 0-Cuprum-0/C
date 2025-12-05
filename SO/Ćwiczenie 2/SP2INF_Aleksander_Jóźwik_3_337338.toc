@@ -1,0 +1,36 @@
+\xpg@aux {}{polish}
+\contentsline {section}{Wstęp}{3}{Doc-Start}%
+\contentsline {section}{\numberline {1}Badanie mechanizmu mapowania zasobów usług katalogowych}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Adres serwera (notacja UNC)}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Adres obiektu bazy danych usług katalogowych}{5}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Identyfikacja zasobów sieciowych przyłączanych przez skrypt logowania kontenera}{5}{section.2}%
+\contentsline {section}{\numberline {3}Badanie mechanizmu kopiowania NetWare}{7}{section.3}%
+\contentsline {section}{\numberline {4}Badanie systemu komunikatów}{9}{section.4}%
+\contentsline {section}{\numberline {5}Badanie i przedstawienie rekordów bazy danych usług katalogowych}{11}{section.5}%
+\contentsline {section}{\numberline {6}Badanie zasobów dyskowych}{14}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Zasoby, do których użytkownik ma nadane bezpośrednie prawa}{15}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Dysk F: (USR1:\textbackslash {}STUD\textbackslash {}337338)}{15}{subsubsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.2}Zasoby, do których użytkownik ma prawa wynikające z dziedziczenia}{16}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Dysk Z: (NW5SYS\_PUB:\textbackslash {}PUBLIC)}{16}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Dysk U: (USR1:\textbackslash {}STUD)}{17}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Dysk X: (TEMP)}{18}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}Dysk Y: (FTP)}{21}{subsubsection.6.2.4}%
+\contentsline {section}{\numberline {7}Nadanie wybranych praw innemu użytkownikowi}{22}{section.7}%
+\contentsline {section}{\numberline {8}Badanie wybranego obiektu}{24}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Serwer}{24}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Wolumen sieciowy}{25}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Katalog}{26}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Plik}{26}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Badanie mechanizmu odzyskiwania usuniętych plików}{27}{section.9}%
+\contentsline {section}{\numberline {10}Modyfikacja skryptu logowania}{28}{section.10}%
+\contentsline {section}{\numberline {11}Właściwości i parametry domyślnego profilu logowania}{30}{section.11}%
+\contentsline {section}{\numberline {12}Lista drukarek}{33}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Usługa OpenText iPrint}{33}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Aplet Urządzenia i drukarki w systemie Windows}{33}{subsection.12.2}%
+\contentsline {section}{\numberline {13}Badanie parametrów usługi drukowania sieciowego OpenText iPrint i własności drukarek}{34}{section.13}%
+\contentsline {section}{\numberline {14}Pomiar czasu logowania w zależności od użytego adresu}{39}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Nazwy DNS}{39}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Adresy IP}{40}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}Nazwy symboliczne}{41}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.4}Błędne nazwy}{42}{subsection.14.4}%
+\contentsline {section}{\numberline {15}Własne wrażenia z użytkowania usług katalogowych eDirectory}{43}{section.15}%

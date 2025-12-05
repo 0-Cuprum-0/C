@@ -1,0 +1,497 @@
+\documentclass[]{article}
+
+\input{preamble.tex}
+
+\definecolor{accent}{HTML}{ed7c50}
+\title{Ćwiczenie 2. Badanie usług katalogowych eDirectory w oparciu o oprogramowanie klienta sieci OES zainstalowanego w systemie Microsoft Windows}
+\author{\authoricon Aleksander Jóźwik}
+\date{\dateicon \today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\tableofcontents
+	
+	\clearpage
+	
+	\section*{Wstęp}
+	\addcontentsline{toc}{section}{Wstęp}
+	
+	Celem ćwiczenia była analiza usług katalogowych eDirectory, dostępnych za pośrednictwem oprogramowania klienckiego sieci OES, zainstalowanego na stacjach roboczych.
+	
+	\section{Badanie mechanizmu mapowania zasobów usług katalogowych}
+	Aby uzyskać dostęp do narzędzi i właściwości OES należy kliknąć prawym przyciskiem myszy na \textbf{ikonę OES Client} w pasku zadań. Następnie w celu mapowania dysku należy wybrać opcję \textbf{Mapowanie dysku sieciowego OES...}
+	
+	\framedfigure{images/1/1.1.png}{8cm}{Menu kontekstowe OES Client}{1.1}
+	
+	Istnieją dwie możliwości wprowadzenia ścieżki sieciowej do zasobu: użycie adresu serwera (notacja UNC) lub adresu odpowiedniego obiektu bazy danych usług katalogowych (drzewa).
+	
+	\clearpage
+	
+	\subsection{Adres serwera (notacja UNC)}
+	
+	\framedfigure{images/1/1.5.png}{8cm}{Mapowanie dysku używając adresu serwera o18}{1.2}
+	
+	\framedfigure{images/1/1.3.png}{8cm}{Przeglądarka zasobów}{1.3}
+	
+	\framedfigure{images/1/1.4.png}{14cm}{Zamapowany dysk w Eksploratorze plików}{1.4}
+	
+	\subsection{Adres obiektu bazy danych usług katalogowych}
+	
+	\framedfigure{images/1/1.7.png}{10cm}{Mapowanie dysku używając adresu obiektu bazy danych usług katalogowych}{1.5}
+	
+	\section{Identyfikacja zasobów sieciowych przyłączanych przez skrypt logowania kontenera}
+	
+	Przyłączone katalogi sieciowe są dostępne w Eksploratorze plików.
+	
+	\framedfigure{images/2/2.1.png}{12cm}{Przyłączone katalogi sieciowe}{2.1}
+	
+	Aby odnaleźć skrypt logowania należy w Eksploratorze Plików przejść do \textbf{Sieć>ZET\_TREE>prawym przyciskiem myszy na zet>Edytuj skrypt logowania kontenera eDir...}
+	
+	\framedfigure{images/2/2.2.png}{14cm}{Edytuj skrypt logowania}{2.2}
+	
+	Na poniższym zrzucie ekranu zaznaczono fragment skryptu, który realizuje przyłączanie katalogów sieciowych.
+	
+	\framedfigure{images/2/edited/2.3.png}{8cm}{Skrypt logowania}{2.3}
+	
+	\section{Badanie mechanizmu kopiowania NetWare}
+	
+	Mechanizm kopiowania NetWare jest dostępny przez ikonę \textbf{OES Client>Programy narzędziowe OES>Kopiowanie OES...}
+	
+	\framedfigure{images/3/3.1.png}{8cm}{Kopiowanie OES}{3.1}
+	
+	W nowym oknie należy wybrać plik lub folder do kopiowania.
+	
+	\framedfigure{images/3/3.2.png}{8cm}{Wybór pliku do kopiowania}{3.2}
+	
+	Następnie należy wpisać ścieżkę docelową i kliknąć OK.
+	
+	\framedfigure{images/3/3.3.png}{8cm}{Narzędzie do kopiowania plików OES}{3.3}
+	
+	Na poniższym zrzucie ekranu udokumentowano efekt użycia narzędzia kopiowania.
+	
+	\framedfigure{images/3/3.4.png}{12cm}{Efekt w Eksploratorze Plików}{3.4}
+	
+	\section{Badanie systemu komunikatów}
+	
+	W celu wysłania wiadomości należy kliknąć na ikonę klienta OES i przejść do \textbf{Programy narzędziowe OES>Wyślij wiadomość>Wyślij wiadomość do użytkowników...}
+	
+	\framedfigure{images/4/4.1.png}{6cm}{Okno kontekstowe}{4.1}
+	
+	Następnie należy wybrać serwer.
+	
+	\framedfigure{images/4/4.2.png}{8cm}{Wybór serwera}{4.2}
+	
+	Wybrany zostaje użytkownik lub grupa, do której zostanie wysłana wiadomość oraz zostaje wprowadzona treść wiadomości.
+	
+	\framedfigure{images/4/4.6.png}{8cm}{Wysyłanie wiadomości}{4.3}
+	
+	W nowym oknie można zobaczyć wyniki wysłania wiadomości.
+	
+	\framedfigure{images/4/4.5.png}{8cm}{Wyniki wysyłania wiadomości}{4.4}
+	
+	Poniżej załączono okno, które zostaje wyświetlone gdy otrzyma się wiadomość.
+	
+	\framedfigure{images/4/4.7.png}{8cm}{Otrzymanie komunikatu}{4.5}
+	
+	\section{Badanie i przedstawienie rekordów bazy danych usług katalogowych}
+
+	Należy otworzyć menu kontekstowe OES Client i kliknąć \textbf{Zarządzanie użytkownikami dla ZET\_TREE}
+	
+	\framedfigure{images/5/5.1.png}{10cm}{Menu kontekstowe}{5.1}
+	
+	Poniżej zostaną wyświetlone wszystkie dostępne informacje.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/5/5.2.png}{7cm}{}{5.2}
+		\framedsubfigure{images/5/5.3.png}{7cm}{}{5.3}
+		\framedsubfigure{images/5/5.4.png}{7cm}{}{5.4}
+		\framedsubfigure{images/5/5.5.png}{7cm}{}{5.5}
+		\caption{Rekordy bazy danych usług katalogowych}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/5/5.6.png}{7cm}{}{5.6}
+		\framedsubfigure{images/5/5.7.png}{7cm}{}{5.7}
+		\framedsubfigure{images/5/5.8.png}{7cm}{}{5.8}
+		\framedsubfigure{images/5/5.9.png}{7cm}{}{5.9}
+		\caption{Rekordy bazy danych usług katalogowych}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/5/5.10.png}{5cm}{}{5.10}
+			\caption{Rekordy bazy danych usług katalogowych}
+	\end{figure}
+	
+	\section{Badanie zasobów dyskowych}
+	
+	Lista praw jest dostępna poprzez narzędzie Eksplorator Plików. Należy nacisnąć prawym przyciskiem myszy na dysk lub katalog i wybrać Prawa dysponenta...
+	
+	\framedfigure{images/6/6.1.png}{12cm}{Eksplorator plików}{6.1}
+	
+	\clearpage
+	
+	\subsection{Zasoby, do których użytkownik ma nadane bezpośrednie prawa}
+	
+	\subsubsection{Dysk F: (USR1:\textbackslash{}STUD\textbackslash{}337338)}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.2.png}{6cm}{Prawa dysponenta}{6.2}
+		\framedsubfigure{images/6/6.3.png}{12cm}{Prawa dziedziczone}{6.3}
+	\end{figure}
+	
+	\clearpage
+	
+	\subsection{Zasoby, do których użytkownik ma prawa wynikające z dziedziczenia}
+	
+	\subsubsection{Dysk Z: (NW5SYS\_PUB:\textbackslash{}PUBLIC)}
+	
+	Prawa wynikające z przynależności do grupy \textbf{EVERYONE.zet}.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.4.png}{6cm}{Prawa dysponenta}{6.4}
+		\framedsubfigure{images/6/6.5.png}{12cm}{Prawa dziedziczone}{6.5}
+	\end{figure}
+	
+	\subsubsection{Dysk U: (USR1:\textbackslash{}STUD)}
+	
+	Prawa wynikające z przynależności do grupy \textbf{STUD.zet}.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.6.png}{7cm}{Prawa dysponenta}{6.6}
+		\framedsubfigure{images/6/6.7.png}{13cm}{Prawa dziedziczone}{6.7}
+	\end{figure}
+	
+	\clearpage
+	
+	\subsubsection{Dysk X: (TEMP)}
+	
+	\textbf{Katalog TMP}
+	
+	Prawa wynikające z przynależności do grupy \textbf{STUD.zet}.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.8.png}{7cm}{Prawa dysponenta}{6.8}
+		\framedsubfigure{images/6/6.9.png}{13cm}{Prawa dziedziczone}{6.9}
+	\end{figure}
+	
+	\clearpage
+	
+	\textbf{Katalog TEMP}
+	
+	Prawa wynikające z przynależności do grup \textbf{EVERYONE.zet} i \textbf{STUD.zet}.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.10.png}{7cm}{Prawa dysponenta}{6.10}
+		\framedsubfigure{images/6/6.11.png}{13cm}{Prawa dziedziczone}{6.11}
+	\end{figure}
+	
+	\clearpage
+	
+	\textbf{Katalog WZORCE}
+	
+	Prawa wynikające z przynależności do grupy \textbf{STUD.zet}.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.12.png}{7cm}{Prawa dysponenta}{6.12}
+		\framedsubfigure{images/6/6.13.png}{13cm}{Prawa dziedziczone}{6.13}
+	\end{figure}
+	
+	\clearpage
+	
+	\subsubsection{Dysk Y: (FTP)}
+	
+	\textbf{Katalog FTP}
+	
+	Prawa wynikające z przynależności do grupy \textbf{EVERYONE.zet}.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/6/6.14.png}{7cm}{Prawa dysponenta}{6.14}
+		\framedsubfigure{images/6/6.15.png}{13cm}{Prawa dziedziczone}{6.15}
+	\end{figure}
+	
+	\section{Nadanie wybranych praw innemu użytkownikowi}
+	
+	Należy w \textbf{Eksploratorze plików} kliknąć prawym przyciskiem na katalog i wybrać \textbf{Prawa dysponenta...}
+	
+	\framedfigure{images/7/7.1.png}{15cm}{Eksplorator plików}{7.1}
+	
+	\clearpage
+	
+	Następnie wybrać użytkownika i kliknąć \textbf{Dodaj}.
+	
+	\framedfigure{images/7/7.2.png}{8cm}{Dodanie użytkownika}{7.2}
+	
+	Na koniec można ustawić uprawnienia dla użytkownika.
+	
+	\framedfigure{images/7/7.3.png}{8cm}{Zmiana uprawnień}{7.3}
+	
+	\section{Badanie wybranego obiektu}
+	
+	\subsection{Serwer}
+	
+	Należy kliknąć w ikonę klienta OES w pasku zadań i wybrać \textbf{Programy narzędziowe OES>Właściwości obiektu...}
+	
+	\framedfigure{images/8/8.1.png}{8cm}{Menu kontekstowe}{8.1}
+	
+	Należy wybrać obiekt, w tym przypadku serwer O18.
+	
+	\framedfigure{images/8/8.2.png}{8cm}{Wybór obiektu}{8.2}
+	
+	\framedfigure{images/8/8.3.png}{6cm}{Informacje o serwerze O18}{8.3}
+	
+	\subsection{Wolumen sieciowy}
+	
+	Należy w Eksploratorze plików nacisnąć prawym przyciskiem myszy na wolumen wybrać Właściwości i przejść do zakładek Statystyka wolumenu OES i Informacje o systemie OES.
+
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/8/8.6.png}{7cm}{Statystyki wolumenu OES}{8.4}
+		\framedsubfigure{images/8/8.10.png}{8cm}{Informacje o wolumenie}{8.5}
+	\end{figure}
+	
+	\subsection{Katalog}
+	
+	Ponownie należy skorzystać z Eksploratora plików i zastosować te same kroki co dla wolumenu.
+	
+	\framedfigure{images/8/8.9.png}{7cm}{Informacje o katalogu}{8.6}
+	
+	\subsection{Plik}
+	
+	Analogicznie jak dla poprzednich obiektów.
+	
+	\framedfigure{images/8/8.8.png}{7cm}{Informacje o pliku}{8.7}
+	
+	\section{Badanie mechanizmu odzyskiwania usuniętych plików}
+	
+	W Eksploratorze plików należy wybrać dysk i kliknąć \textbf{Odzyskaj pliki...}
+	
+	\framedfigure{images/9/9.1.png}{14cm}{Eksplorator plików}{9.1}
+	
+	W nowym oknie można filtrować pliki i odczytać ich parametry, a także po wybraniu plików nacisnąć Odzyskaj plik/Odzyskaj wszystkie, aby je przywrócić.
+	
+	\framedfigure{images/9/9.2.png}{10cm}{Odzyskaj pliki sieciowe}{9.2}
+	
+	Poniższa lista prezentuje dostępne parametry dla plików:
+	
+	\begin{itemize}
+		\item Nazwa pliku
+		\item Data usunięcia
+		\item Godzina usunięcia
+		\item Rozmiar pliku
+		\item Nazwa usuwającego
+		\item Data ostatniej aktualizacji
+		\item Godzina ostatniej aktualizacji
+		\item Data utworzenia
+		\item Godzina utworzenia
+		\item Nazwa właściciela
+		\item Data archiwizacji
+		\item Godzina archiwizacji
+		\item Nazwa archiwizatora
+		\item Data ostatniego użycia 
+	\end{itemize}
+	
+	\section{Modyfikacja skryptu logowania}
+	
+	W celu zmodyfikowania skryptu logowania należy kliknąć na ikonę klienta OES w pasku zadań i przejść do \textbf{Zarządzanie użytkownikami dla ZET\_TREE > Edytuj skrypt logowania...}
+	
+	\framedfigure{images/10/10.1.png}{12cm}{Menu kontekstowe}{10.1}
+	
+	Następnie należy wprowadzić zmiany i kliknąć OK.
+	
+	\framedfigure{images/10/10.2.png}{8cm}{Edytuj skrypt logowania}{10.2}
+	
+	Po ponownym zalogowaniu można sprawdzić efekt modyfikacji. W wierszu poleceń należy użyć komendy \textbf{set} w celu sprawdzenia zmiennych środowiskowych.
+	
+	\framedfigure{images/10/10.3.png}{10cm}{Efekt modyfikacji skryptu widoczny w CMD}{10.3}
+	
+	W Eksploratorze plików można znaleźć zamontowany katalog Ćwiczenie 2 jako dysk G.
+	
+	\framedfigure{images/10/10.4.png}{14cm}{Zamontowany katalog w Eksploratorze plików}{10.4}
+	
+	\section{Właściwości i parametry domyślnego profilu logowania}
+	
+	Aby znaleźć te dane należy w menu kontekstowym OES nacisnąć \textbf{Zarządzanie użytkownikami dla ZET\_TREE > Administrowanie profilami logowania...}
+	
+	\framedfigure{images/11/11.1.png}{10cm}{Menu kontekstowe}{11.1}
+	
+	Należy wprowadzić identyfikator użytkownika i kliknąć \textbf{Własności}.
+	
+	\framedfigure{images/11/11.2.png}{6cm}{Wprowadzanie identyfikator użytkownika}{11.2}
+	
+	Poniżej załączone są wszystkie dostępne właściwości i parametry domyślnego profilu logowania.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/11/11.3.png}{6cm}{Zakładka Poświadczenia}{11.3}
+		\framedsubfigure{images/11/11.4.png}{6cm}{Zakładka eDirectory}{11.4}
+		\framedsubfigure{images/11/11.5.png}{6cm}{Zakładka Skrypt}{11.5}
+		\framedsubfigure{images/11/11.6.png}{6cm}{Zakładka Windows}{11.6}
+		\framedsubfigure{images/11/11.7.png}{6cm}{Zakładka Usługi NMAS}{11.7}
+		\framedsubfigure{images/11/11.8.png}{6cm}{Zakładka 802.1X}{11.8}
+		\caption{Właściwości i parametry domyślnego profilu logowania}
+	\end{figure}
+	\clearpage
+		
+	\section{Lista drukarek}
+	
+	\subsection{Usługa OpenText iPrint}
+	
+	Listę drukarek można wyświetlić w przeglądarce internetowej wpisując adres: http://o18.iem.pw.edu.pl/ipp.
+	
+	\framedfigure{images/12/12.1.png}{16cm}{Lista drukarek dostępnych w ramach usługi OpenText iPrint}{12.1}
+	
+	\subsection{Aplet Urządzenia i drukarki w systemie Windows}
+	
+	Aby znaleźć ten aplet należy otworzyć \textbf{Panel Sterowania} i przejść do \textbf{Sprzęt i dźwięk > Urządzenia i drukarki}.
+	
+	\framedfigure{images/12/12.2.png}{10cm}{Lista drukarek w aplecie Urządzenia i drukarki}{12.2}
+	
+	\section{Badanie parametrów usługi drukowania sieciowego OpenText iPrint i własności drukarek}
+	
+	Aby otworzyć ustawienia należy w pasku zadań kliknąć na ikonę iPrint i nacisnąć \textbf{Ustawienia iPrint}.
+	
+	\framedfigure{images/13/13.1.png}{6cm}{Ustawienia iPrint}{13.1}
+	
+	Poniżej zaprezentowano wszystkie zakładki okna ustawień.
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/13/13.2.png}{8cm}{O programie}{13.2}
+		\framedsubfigure{images/13/13.3.png}{8cm}{Proxy}{13.3}
+		\framedsubfigure{images/13/13.4.png}{8cm}{Hasła}{13.4}
+		\caption{Zakładki okna ustawień iPrint}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/13/13.5.png}{7cm}{Ikona podajnika}{13.5}
+		\framedsubfigure{images/13/13.6.png}{7cm}{Potwierdzenie}{13.6}
+		\caption{Zakładki okna ustawień iPrint}
+	\end{figure}
+	
+	Właściwości drukarki są dostępne dzięki narzędziu \textbf{Urządzenia i drukarki}, wspomnianym w poprzednim zadaniu.
+	
+	\framedfigure{images/13/13.7.png}{12cm}{Urządzenia i drukarki}{13.7}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/13/13.18.png}{6cm}{Ogólne}{13.8}
+		\framedsubfigure{images/13/13.19.png}{6cm}{Udostępnianie}{13.9}
+		\framedsubfigure{images/13/13.20.png}{6cm}{Porty}{13.10}
+		\framedsubfigure{images/13/13.21.png}{6cm}{Zaawansowane}{13.11}
+		\framedsubfigure{images/13/13.22.png}{6cm}{Zarządzanie kolorami}{13.12}
+		\caption{Właściwości drukarki}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		
+		\framedsubfigure{images/13/13.23.png}{6cm}{Zabezpieczenia}{13.13}
+		\framedsubfigure{images/13/13.24.png}{6cm}{Ustawienia urządzenia}{13.14}
+		\caption{Właściwości drukarki}
+	\end{figure}
+	
+	Informacje o drukarce można też znaleźć używając strony w przeglądarce internetowej, zaprezentowanej w poprzednim zadaniu.
+	
+	\framedfigure{images/13/13.17.png}{12cm}{Właściwości drukarki w Micro Focus iPrint}{13.15}
+	
+	\section{Pomiar czasu logowania w zależności od użytego adresu}
+	
+	Aby dokonać pomiaru czasu logowania należy wylogować się, zmienić serwer do którego się logujemy, kliknąć Zaloguj, zmierzyć czas, a na koniec wyświetlić okno Połączenia OES.
+	
+	\subsection{Nazwy DNS}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.1.jpg}{8cm}{}{14.1}
+		\framedsubfigure{images/14/14.2.png}{6cm}{}{14.2}
+		\caption{Nazwa DNS: o17.iem.pw.edu.pl; Czas: 13,410 s}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.3.jpg}{8cm}{}{14.3}
+		\framedsubfigure{images/14/14.4.png}{6cm}{}{14.4}
+		\caption{Nazwa DNS: o18.iem.pw.edu.pl; Czas: 9,98 s}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.5.jpg}{8cm}{}{14.5}
+		\framedsubfigure{images/14/14.6.png}{6cm}{}{14.6}
+		\caption{Nazwa DNS: o19.iem.pw.edu.pl; Czas: 13,28 s}
+	\end{figure}
+	
+	\subsection{Adresy IP}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.7.jpg}{6cm}{}{14.7}
+		\framedsubfigure{images/14/14.12.png}{6cm}{}{14.8}
+		\caption{Adres: 10.42.1.24; Czas: 12,95 s}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.20.jpg}{6cm}{}{14.9}
+		\framedsubfigure{images/14/14.8.png}{6cm}{}{14.10}
+		\caption{Adres: 10.42.1.25; Czas: 10,45 s}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.9.jpg}{6cm}{}{14.11}
+		\framedsubfigure{images/14/14.10.png}{6cm}{}{14.12}
+		\caption{Adres: 10.42.1.26; Czas: 12,21 s}
+	\end{figure}
+	
+	\subsection{Nazwy symboliczne}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.11.jpg}{6cm}{}{14.13}
+		\framedsubfigure{images/14/14.12.png}{6cm}{}{14.14}
+		\caption{Nazwa symboliczna: O17 ; Czas: 14,01 s}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.13.jpg}{6cm}{}{14.15}
+		\framedsubfigure{images/14/14.18.png}{6cm}{}{14.16}
+		\caption{Nazwa symboliczna: O18; Czas: 13,07 s}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\framedsubfigure{images/14/14.15.jpg}{6cm}{}{14.17}
+		\framedsubfigure{images/14/14.14.png}{6cm}{}{14.18}
+		\caption{Nazwa symboliczna: O19; Czas: 12,85 s}
+	\end{figure}
+	
+	\subsection{Błędne nazwy}
+	
+	\framedfigure{images/14/14.17.jpg}{8cm}{Błędna nazwa; Czas: 47,31 s}{14.19}
+	
+	\framedfigure{images/14/14.19.jpg}{8cm}{Brak nazwy; Czas: 0 s}{14.20}
+	
+	\section{Własne wrażenia z użytkowania usług katalogowych eDirectory}
+	
+	Uważam, że usługi katalogowe eDirectory, badane przy użyciu klienta OES, są rozwiązaniem spójnym i funkcjonalnym. Usługa oferuje głęboką integrację z systemem Windows, dzięki czemu jest to bardzo wygodne narzędzie.
+	
+	Pozytywnie odbieram fakt, że kluczowe funkcje, takie jak badanie praw dysponenta, odzyskiwanie plików czy modyfikacja skryptów logowania, są dostępne bezpośrednio z poziomu klienta i Eksploratora plików.
+
+	Podsumowując, uważam klienta OES za potężne narzędzie. Mimo iż interfejs niektórych narzędzi wydaje się przestarzały, to kluczowa funkcjonalność zarządzania zasobami i prawami stoi na wysokim, profesjonalnym poziomie.
+	
+\end{document}

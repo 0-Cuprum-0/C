@@ -1,0 +1,9 @@
+Nazwa DNS: o17.iem.pw.edu.pl Czas: 13,410 s
+Nazwa DNS: o18.iem.pw.edu.pl Czas: 9,980 s
+Nazwa DNS: o19.iem.pw.edu.pl Czas: 13,280 s
+Adres IP: 10.42.1.24 Czas: 12,950 s
+Adres IP: 10.42.1.25 Czas: 10,450 s
+Adres IP: 10.42.1.26 Czas: 12,210 s
+Nazwa symboliczna: O17 Czas: 14,010 s 
+Nazwa symboliczna: O18 Czas: 13,070 s
+Nazwa symboliczna: O19 Czas: 12,850 s
