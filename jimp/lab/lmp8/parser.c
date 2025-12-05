@@ -4,7 +4,7 @@
 #include "fun_stack.h"  // stos funkcji
 
 #define MAXINDENTLENGHT 256     // maks długość identyfikatora
-static list_t stackTop = NULL;
+
 void
 analizatorSkladni (char *inpname)
 {                               // przetwarza plik inpname
